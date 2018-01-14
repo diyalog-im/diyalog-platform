@@ -2,8 +2,6 @@
   <img  width="200" height="200" src="logo_blue_512.png">
 </p>
 
-:rocket:
-
 # Diyalog Messaging Platform 1.0.3
 
 ## Introduction
