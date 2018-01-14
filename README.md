@@ -2,9 +2,9 @@
   <img  width="200" height="200" src="logo_blue_512.png">
 </p>
 
-# Diyalog Messaging Platform 1.0.3 #
+# Diyalog Messaging Platform 1.0.3
 
-## Introduction ##
+## Introduction
 
 Diyalog is a platform which provides mutual, continuous and secure communication to companies with their customers.
 
@@ -47,7 +47,7 @@ Diyalog is secure, because;
 - All messages are stored in the system.
 - All messaging can be audited.
 
-##Getting Started##
+## Getting Started
 
 Diyalog server has following parts:
 
@@ -83,7 +83,7 @@ Diyalog clients are :
 3. Android SDK
 
 
-##DevOps Documentation##
+## DevOps Documentation
 Welcome to devops documentatation. You can find how you can install Diyalog Platform server from Diyalog docker images.
 
 Installation procedure should be following order.
@@ -260,6 +260,6 @@ Installation procedure should be following order.
 5. 
 	
 
-###Server Installation##
+## Server Installation
 
 
