@@ -1,4 +1,4 @@
-<p>
+<p align="center">
   <img  width="200" height="200" src="logo_blue_512.png">
 </p>
 
@@ -141,7 +141,7 @@ Installation procedure should be following order.
  
 3. Running Diyalog-Server
 
-	diyalog-server docker image should be used for running diyalog-server. The following setting can be add to you docker run command as environment variable to change setting in the server. 
+	**diyalog-server** docker image should be used for running diyalog-server. The following setting can be add to you docker run command as environment variable to change setting in the server. 
 	
 	**For Securing Server :**
 			
@@ -194,11 +194,11 @@ Installation procedure should be following order.
 	
 	**Google Messaging Service Settings :**
 
-			TODO: This will be documented later.
+			//TODO: This will be documented later.
 
 	**Apple Push Notification Service Settings :**
 
-			TODO: This will be documented later.
+			//TODO: This will be documented later.
 			
 	**TURN/STUN server settings :**
 
@@ -252,14 +252,49 @@ Installation procedure should be following order.
 			 -d \
 			 diyalog/server-orcl:1.0.3
 			 
-			
+	
+	After running Diyalog server. You can add a proxy server in front of it for SSL offloading, load balance and directing the connection. Haproxy is recomended for it. You can use following DNS names notation and backend port configuration.
+	
+	**DNS and Backend Conf**
+	
+	| Record Name  | DNS Name (sample)  | Default Port |  Description |
+	| ------------ | -----------------  | ------------ | -------------  |
+	| web          | web.domain.com     | 3000 | Web client application endpoint.             |
+	| ws           | ws.domain.com      | 4858 | Websocket port of Diyalog server for clients.|
+	| tcp          | tcp.domain.com     | 4857 | Tcp port of Diyalog server for mobile apps.  |
+	| api          | api.domain.com     | 4859 | Http api endpoint. This endpoint is also support bots. |
+		
+	
 4. Starting MasterBot app to be able to create and manage credentials of new bot applications.
 	
-	There is a possibility to create new bot applications for the Diyalog platform. There is a diyalog-bots-platform library. You can use this library to create new bot application which can communicate with diyalog-server.
-	MasterBot is a bot application. Its main purpose is to create and manage newly developed bot applications. 
+	There is a possibility to create new bot applications for the Diyalog platform. There is a diyalog-bots-platform library. You can use this library to create new bot application which can communicate with diyalog-server. MasterBot is a bot application. Its main purpose is to create and manage newly developed bot applications. 
+
+	**diyalog-masterbot** docker image should be used for running diyalog masterbot. You can start MasterBot docker image with following command. Since Masterbot app will connect to Diyalog-server when started, diyalog-server should be started first.
+
+	For starting Masterbot app you need to set some environment variables. You can find the details about them below.
+		
+	**MasterBot Settings**
+		
+		BOT_ENDPOINT : Diyalog server "api" endpoint adress. Diyalog server is waiting 
+						  websocket connection from bot applications at port 4859 as default.
+						  This port shou
+		
+	for starting docker image:
+	
+		docker run \
+			--name=diyalog-masterbot \
+			-e "BOT_ENDPOINT=ws://<Diyalog Server api endpoint>" \
+			-e "BOT_USERNAME=<Username which created in Diyalog platform for Masterbot>" \
+			-e "BOT_TOKEN=<Token which created in Diyalog platform for Masterbot>" \
+			-d \
+			diyalog-masterbot:1.0.0
+	
+
+	
 5. 
 	
 
 ## Server Installation
 
 
+:rocket:
