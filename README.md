@@ -2,9 +2,9 @@
   <img  width="200" height="200" src="logo_blue_512.png">
 </p>
 
-#Diyalog Messaging Platform 1.0.3#
+# Diyalog Messaging Platform 1.0.3 #
 
-##Introduction##
+## Introduction ##
 
 Diyalog is a platform which provides mutual, continuous and secure communication to companies with their customers.
 
