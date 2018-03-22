@@ -80,7 +80,7 @@ Diyalog clients are :
 
 1. Web SDK
 2. iOS SDK
-3. Android SDK
+3. [Android SDK](diyalog-android-sdk/README.MD)
 
 
 ## DevOps Documentation
