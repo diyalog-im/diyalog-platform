@@ -155,11 +155,9 @@ Inside that method set below configure.<br />
 ```sh
 DiyalogEngine.diyalogInstance().setEndpoints(new String[]{"YOUR_SERVER_URL_HERE"});
 ```
-**b. Set Custom theme color:**
-```sh
-DiyalogStyle style = DiyalogEngine.diyalogInstance().style;
-style.setMainColor(Color.parseColor("#42f47a"));    
-```
+**b. Set Custom style to your Diyalog:**
+
+You can find detailed information about haw to set your custom colors and style to you application in [Diyalog Styles Document](diyalog-style/README.md) 
 
 **c. Set Configurable following parameter :**
 
