@@ -10,7 +10,7 @@ You can find below details about how you can create ionic project and create cor
     
 1. [Create cordova plugin](CreateCordovaPlugin/README.md) 
     
-    _You can skip it. You can find DiyalogSDK Cordova plugin (DiyalogChat) in directory [Plugin](../Plugin)._
+    _You can skip it. You can find DiyalogSDK Cordova plugin (DiyalogChat) in directory [Plugin](./Plugin)._
 
 ### Configuration Steps
 **Step 1:** Download "DiyalogChat" plugin and put it on your ionic project root directory. 
