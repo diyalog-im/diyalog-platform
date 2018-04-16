@@ -8,7 +8,7 @@ You can find below details about how you can create ionic project and create cor
     
     _You can skip it. If you have already an ionic/cordova project._
     
-1. [Create ionic project](CreateCordovaPlugin/README.md) 
+1. [Create cordova plugin](CreateCordovaPlugin/README.md) 
     
     _You can skip it. You can find DiyalogSDK Cordova plugin in directory [Plugin](../Plugin)._
 
