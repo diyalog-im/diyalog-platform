@@ -220,6 +220,8 @@ dependencies {
         }
         compile 'com.android.support:customtabs:26.1.0'
         compile 'com.google.android.gms:play-services-maps:11.8.0'
+
+        compile 'jp.wasabeef:glide-transformations:2.0.2'
    }
 ```
 
@@ -352,13 +354,32 @@ public class DiyalogChatActivity extends Activity {
         String package_name = getApplication().getPackageName();
         setContentView(getApplication().getResources().getIdentifier("diyalog_chat_layout", "layout", package_name));
 
-        if (messenger().getAuthState() != AuthState.LOGGED_IN) {
-            Bundle authExtras = new Bundle();
-            authExtras.putInt(AuthActivity.SIGN_TYPE_KEY, AuthActivity.SIGN_TYPE_UP);
-            DiyalogEngine.diyalogInstance().getActivityManager().startAuthActivity(DiyalogChatActivity.this, authExtras);
-            finish();
+         if (messenger().getAuthState() != AuthState.LOGGED_IN) {
+
+            long lastActiveAuthID = messenger().getPreferences().getLongOfKey(Authentication.KEY_LAST_ACTIVEUSER_AUTH_ID);
+            if (lastActiveAuthID == 0)
+            {
+                Bundle authExtras = new Bundle();
+                authExtras.putInt(AuthActivity.SIGN_TYPE_KEY, AuthActivity.SIGN_TYPE_IN);
+                authExtras.putInt(AuthActivity.USER_TYPE_KEY, AuthActivity.USER_TYPE_PERSONAL);
+                DiyalogEngine.diyalogInstance().getActivityManager().startAuthActivity(DiyalogChatActivity.this, authExtras);
+                finish();
+            }
+            else {
+
+                messenger().autoLogin(lastActiveAuthID);
+                messenger().switchAccount();
+                messenger().killAppStateActor();
+
+                DiyalogEngine.diyalogInstance().createDiyalog(getApplication());
+                DiyalogEngine.diyalogInstance().startMessagingApp(DiyalogChatActivity.this);
+                finish();
+            }
             return;
+
+
         }
+
         DiyalogEngine.diyalogInstance().startMessagingApp(DiyalogChatActivity.this);
         finish();
 
