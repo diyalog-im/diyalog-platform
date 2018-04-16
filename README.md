@@ -81,7 +81,7 @@ Diyalog clients are :
 1. Web SDK
 2. iOS SDK
 3. [Android SDK](diyalog-android-sdk/README.MD)
-4. [Ionic / Cordova Plugin](diyalog-cordova-plugin/README.MD)
+4. [Ionic / Cordova Plugin](diyalog-ionic-cordova-plugin/README.MD)
 
 
 ## DevOps Documentation
