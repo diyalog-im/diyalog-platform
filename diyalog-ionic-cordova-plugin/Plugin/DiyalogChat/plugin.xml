@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="im.diyalog.ionicplugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>DiyalogChat</name>
+  <js-module name="DiyalogChat" src="www/DiyalogChat.js">
+    <clobbers target="cordova.plugins.DiyalogChat" />
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="DiyalogChat">
+        <param name="android-package" value="im.diyalog.ionicplugin.DiyalogChat" />
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <activity android:label="Diyalog Chat" android:name="im.diyalog.ionicplugin.DiyalogChatActivity"></activity>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml">
+    </config-file><source-file src="src/android/DiyalogChat.java" target-dir="src/im/diyalog/ionicplugin" />
+
+    <source-file src="src/android/DiyalogChatActivity.java" target-dir="src/im/diyalog/ionicplugin" />
+  <source-file src="src/android/diyalog_chat_layout.xml" target-dir="res/layout"/>
+  </platform>
+</plugin>

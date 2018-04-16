@@ -1,0 +1,17 @@
+{
+  "name": "im.diyalog.ionicplugin",
+  "version": "1.0.0",
+  "description": "",
+  "cordova": {
+    "id": "im.diyalog.ionicplugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC"
+}
