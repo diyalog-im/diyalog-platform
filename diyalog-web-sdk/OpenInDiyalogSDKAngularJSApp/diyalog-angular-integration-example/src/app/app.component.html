@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Dotnet</title>
+    <link href="../assets/scss/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/scss/stylenew.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="header" class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header topnav">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="icon-reorder"></i>
+            </button>
+            <a class="navbar-brand" href="#">
+                Company App
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper" class="col-md-2">
+            <div id="sidebar">
+                <ul class="nav list-group">
+                    <li id="item1" [ngClass]='classlayout'>
+                        <a class="list-group-item" (click)="onfulllayout()">
+                            <i class="icon-home icon-1x"></i>Diyalog</a>
+                    </li>
+                    <li id="item2" [ngClass]='classsother'>
+                        <a class="list-group-item" (click)="onOther()">
+                            <i class="icon-home icon-1x"></i>Other Feature</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main-wrapper" class="col-md-10 pull-right">
+            <div id="main" class="content item1">
+                <div class="page-header">
+                    <h3>Diyalog</h3>
+                </div>
+                <router-outlet>
+                </router-outlet>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".list-group > li").each(function () {
+                var item = $(this);
+                item.click(function (index) {
+                    var id = item.attr('id');
+                    $(this).addClass('newtab-active').siblings().removeClass('newtab-active');
+
+                    $("#main-wrapper > div.content").each(function () {
+                        if ($(this).hasClass(id)) {
+                            $(this).show();
+                        }
+                        else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

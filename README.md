@@ -78,7 +78,7 @@ Diyalog server has following parts:
 	
 Diyalog clients are :
 
-1. Web SDK
+1. [Web SDK](diyalog-web-sdk/README.MD)
 2. iOS SDK
 3. [Android SDK](diyalog-android-sdk/README.MD)
 4. [Ionic / Cordova Plugin](diyalog-cordova-plugin/README.md)
