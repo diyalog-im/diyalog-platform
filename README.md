@@ -1,5 +1,5 @@
 
-![](logo_blue_512.png)
+![](logo_blue_256.jpg)
 # Diyalog Messaging Platform 1.0.4
 
 ## Introduction
