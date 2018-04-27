@@ -1,7 +1,5 @@
-<p align="center">
-  <img  width="200" height="200" src="logo_blue_512.png">
-</p>
 
+![](logo_blue_512.png)
 # Diyalog Messaging Platform 1.0.4
 
 ## Introduction
