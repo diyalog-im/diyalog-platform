@@ -16,26 +16,30 @@ Diyalog SDK supported with Android 4.0.3(API level 15) & Above
   - Audio Call
 
 ### Configuration Steps
-**Step 1:** Download Diyaload SDK (android-sdk-release.aar) from …….<br />
-**Step 2:** Copy the aar file and put it under app module's libs folder. As shown in below Screen shot.<br />
-
-![](aarPlace.jpg)<br />
-
-**Step 3:** Open Project level build.gradle file and add “flatDir{dirs 'libs'}”as shown below.
+**Step 1:** Open your Project level build.gradle file and add below mentioned maven repository Url in build.grdle file.<br />
 
 ```sh
-allprojects {
-	repositories {
-		jcenter()
-		flatDir {
-			dirs 'libs'//this way we can find the .aar file in libs folder
-		}
-	}
+repositories {
+    jcenter()
+    mavenCentral()
+    ...
+    maven {
+        credentials {
+            username mavenUser
+            password mavenPassword
+        }
+        url 'http://mavenrepo.diyalog.im:18081/repository/maven-releases/'
+    }
 }
 ```
-**Step 4:** Open application level build.grdle file. <br />
+
+**You will need credential for access our private repository. We will create a user for your company.
+Please contact us to get mavenUser and mavenPassword for accessing repository.**
+		
+**Step 2:** Open module level build.grdle file. <br />
 
 **a. set compile and target sdk version to 26 and above**
+
 ```sh
 compileSdkVersion 26
     defaultConfig {
@@ -43,55 +47,25 @@ compileSdkVersion 26
         minSdkVersion 15
         targetSdkVersion 26
         --
+	multiDexEnabled true
+    }
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+    lintOptions {
+        abortOnError false
     }
 ```
 
-**b. Add the following dependencies**
-```sh
-dependencies {
-	compile (name:'android-sdk-release', ext:'aar')
+**b. Add below mentioned dependency**
 
-        // Calls
-        compile 'io.pristine:libjingle:11139@aar'
-	// UI
-	compile 'com.facebook.fresco:fresco:0.7.0'
-	compile 'com.facebook.rebound:rebound:0.3.8'
-	compile 'com.soundcloud.android:android-crop:1.0.0@aar'
-	compile('com.github.chrisbanes.photoview:library:1.2.4') {
-		exclude module: 'support-v13'
-	}
-	compile 'com.droidkit:progress:0.5'
-	compile 'com.getbase:floatingactionbutton:1.9.1'
-	// Core
-	compile 'com.squareup.okhttp3:okhttp:3.9.1'
-	compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
-	// Android Support
-        compile 'com.android.support:support-v13:26.1.0'
-        compile 'com.android.support:appcompat-v7:26.1.0'
-        compile 'com.android.support:palette-v7:26.1.0'
-        compile 'com.android.support:recyclerview-v7:26.1.0'
-        compile 'com.android.support:design:26.1.0'
-        compile 'com.android.support:customtabs:26.1.0'
-        compile 'com.google.android.gms:play-services-maps:8.4.0'
-}
+ ```sh
+ implementation "im.diyalog:DiyalogEngine:0.0.1"
 ```
 
-**Step 5:** Add below code at bottom of application level build.gradle files.This code require because support library version 26 and above are missing **AnimatorCompatHelper** class for animation, and do not change **details.useVersion '25.3.0'** version number.
 
-```sh
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion '25.3.0'
-            }
-        }
-    }
-}
-```
 
-**Step 6:** Open your project AndroidManifest.xml file and add below line of code inside <application> tag.
+**Step 3:** Open your project AndroidManifest.xml file and add below line of code inside <application> tag.
 
 ```sh
 <meta-data
@@ -104,62 +78,25 @@ To get Map API key please check this
 
 **Link :** **https://developers.google.com/maps/documentation/android-api/signup**
 
-**Step 7:**  Add below permissions into AndroidManifest.xml file.
-
-```sh
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
-<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
-<uses-permission android:name="android.permission.READ_CONTACTS" />
-<uses-permission android:name="android.permission.WRITE_CONTACTS" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.VIBRATE" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.READ_PROFILE" />
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
-<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-<uses-feature
-android:glEsVersion="0x00020000"
-android:required="true" />
-<uses-feature
-android:name="android.hardware.telephony"
-android:required="false" />
-<uses-feature
-android:name="android.hardware.bluetooth"
-android:required="false" />
-<uses-feature
-android:name="android.hardware.camera"
-android:required="false" />
-<uses-feature
-android:name="android.hardware.location"
-android:required="false" />
-<uses-feature 
-android:name="android.hardware.microphone"
-android:required="false" />
-```
-
-**Step 8:** Create Application class and extend it **withDiyalogEngineApplication**. And override **onConfigureDiyalogEngine()** method.
+**Step 4:** Create Application class and extend it with **DiyalogEngineApplication**. And override **onConfigureDiyalogEngine()** method.
 Inside that method set below configure.<br />
 **a. Set Server End Point:**
 ```sh
 DiyalogEngine.diyalogInstance().setEndpoints(new String[]{"YOUR_SERVER_URL_HERE"});
 ```
-**b. Set Custom style to your Diyalog:**
+**b. Set push ID:** You need to set push ID to get push notification while application is closed.
+```sh
+DiyalogEngine.diyalogInstance().setPushId(YOUR_PUSH_ID_HERE);
+```
+**Note** : Replace **YOUR_PUSH_ID** with your actual **Push ID** key which you will get from your google console
 
-You can find detailed information about haw to set your custom colors and style to you application in [Diyalog Styles Document](diyalog-style/README.md) 
+**c. Set Custom theme color:**
+```sh
+DiyalogStyle style = DiyalogEngine.diyalogInstance().style;
+style.setMainColor(Color.parseColor("#42f47a"));    
+```
 
-**c. Set Configurable following parameter :**
+**d. Set Configurable following parameter :**
 
 -  Set enable/disable audio call funcation
 -  Set Application name
@@ -167,6 +104,7 @@ You can find detailed information about haw to set your custom colors and style 
 -  Help line number
 -  Privacy policy text/URL
 -  Terms and condition text/URL
+-  Enable back button on Chat home screen.
 
 ### Full Code:
 ```sh
@@ -178,6 +116,9 @@ public class DiyalogApplication extends DiyalogEngineApplication {
 		// set here your end point
 		DiyalogEngine.diyalogInstance().setEndpoints(new String[]{"YOUR_SERVER_URL_HERE "});
 
+		// set here your end point
+                DiyalogEngine.diyalogInstance().setPushId(YOUR_PUSH_ID);
+
 		// set here you application theme color
 		DiyalogStyle style = DiyalogEngine.diyalogInstance().style;
 		style.setMainColor(Color.parseColor("#FFFF4081"));
@@ -186,7 +127,7 @@ public class DiyalogApplication extends DiyalogEngineApplication {
 ```
 Do not forget to mention application class  in **AndroidManifest.xml** inside **<application>** tag using **android:name** property.
 
-**Step 9:** Now you have done with integration steps, Add below code for open chat screen from your application.  This will first check user authentication is completed or not, First time it will ask for login screen and after authentication complete it will open chat screen. Follow below steps
+**Step 5:** Now you have done with integration steps, Add below code for open chat screen from your application.  This will first check user authentication is completed or not, First time it will ask for login screen and after authentication complete it will open chat screen. Follow below steps
 
 - **a.** import messenger class **“import static im.diyalog.sdk.util.DiyalogEngineMessenger.messenger;”**
 - **b.** And code for start chat screen<br />
@@ -195,15 +136,35 @@ Do not forget to mention application class  in **AndroidManifest.xml** inside **
 btnStartChat.setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
-		if (messenger().getAuthState() != AuthState.LOGGED_IN) {
-			Bundle authExtras = new Bundle();
-			authExtras.putInt(AuthActivity.SIGN_TYPE_KEY, AuthActivity.SIGN_TYPE_UP);
-			DiyalogEngine.diyalogInstance().getActivityManager().startAuthActivity(MainActivity.this, authExtras);
-			finish();
-			return;
-		}
-	DiyalogEngine.diyalogInstance().startMessagingApp(MainActivity.this);
-	finish();
+		 
+           if (messenger().getAuthState() != AuthState.LOGGED_IN) {
+
+            long lastActiveAuthID = messenger().getPreferences().getLongOfKey(Authentication.KEY_LAST_ACTIVEUSER_AUTH_ID);
+            if (lastActiveAuthID == 0)
+            {
+                Bundle authExtras = new Bundle();
+                authExtras.putInt(AuthActivity.SIGN_TYPE_KEY, AuthActivity.SIGN_TYPE_IN);
+                authExtras.putInt(AuthActivity.USER_TYPE_KEY, AuthActivity.USER_TYPE_PERSONAL);
+                DiyalogEngine.diyalogInstance().getActivityManager().startAuthActivity(MainActivity.this, authExtras);
+                finish();
+            }
+            else {
+
+                messenger().autoLogin(lastActiveAuthID);
+                messenger().switchAccount();
+                messenger().killAppStateActor();
+
+                DiyalogEngine.diyalogInstance().createDiyalog(getApplication());
+                DiyalogEngine.diyalogInstance().startMessagingApp(this);
+                finish();
+            }
+            return;
+
+
+        }
+
+        DiyalogEngine.diyalogInstance().startMessagingApp(this);
+        finish();
 	}
 });
 ```
