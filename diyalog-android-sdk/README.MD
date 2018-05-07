@@ -96,6 +96,8 @@ DiyalogStyle style = DiyalogEngine.diyalogInstance().style;
 style.setMainColor(Color.parseColor("#42f47a"));    
 ```
 
+**Note:** Diyalog SDK gives you many customization in the chat views. You can learn details about styling Diyalog in **[styling document.](diyalog-style/README.md)** 
+
 **d. Set Configurable following parameter :**
 
 -  Set enable/disable audio call funcation
