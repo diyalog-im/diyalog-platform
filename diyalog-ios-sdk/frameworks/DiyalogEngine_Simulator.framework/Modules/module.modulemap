@@ -1,0 +1,11 @@
+framework module DiyalogEngine {
+  umbrella header "DiyalogEngine.h"
+
+  export *
+  module * { export * }
+}
+
+module DiyalogEngine.Swift {
+    header "DiyalogEngine-Swift.h"
+    requires objc
+}
