@@ -102,8 +102,6 @@ A successful Send API request returns a JSON string containing identifiers for t
   <img src="resources/genericTemplateSS.png">
 </p>
 
-![](resources/genericTemplateSS.png)
-
 The generic template allows you to send a structured message that includes an image, text and buttons. A generic template with multiple templates described in the elements array will send a horizontally scrollable carousel of items, each composed of an image, text and buttons. For complete implementation details, see Generic Template.
 
 ##### Request URI
@@ -226,7 +224,10 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | webview_height_ratio |  String     | Value must be *FULL"|yes|
 
 
-> Made with :heart: by Ayya Co Ltd.
+
+ <p align="center">
+   Made with :heart: by Ayya Co Ltd.
+ </p>
 
 
 
