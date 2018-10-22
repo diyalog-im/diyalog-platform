@@ -192,7 +192,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 |	  Property      |    Type                  |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | template_type     | String                   | Value must be **generic**      |yes     |
-| elements          | Array[element]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
+| elements          | Array[[element](#message.attachment.payload.elements)]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
 | buttons           | Array[[button](#button)] | This property will not used in generic template. It should be set empty array. [] | yes|
 
 ##### _message.attachment.payload.elements_
@@ -202,7 +202,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | title                                |  String                  | The title to display in the template.   |Optional|
 | subtitle                             |  String                  | The subtitle to display in the template.|Optional|
 | image_url                            |  String                  | The URL of the image to display in the template.| Optional|
-| [default_action](#default_action)    |  Object                  | The default action executed when the template is tapped.| Optional|
+| default_action                       |  Object ([default_action](#default_action))                  | The default action executed when the template is tapped.| Optional|
 | buttons                              |  Array[[button](#button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
 
 
