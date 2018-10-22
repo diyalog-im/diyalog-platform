@@ -1,5 +1,5 @@
 
-# Diyalog Messenger Platform
+# Diyalog Messenger Platform Messagin API Reference
 
 ## 1. Sending Messages
 
