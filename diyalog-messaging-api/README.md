@@ -24,7 +24,7 @@ https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN
 
 ##### Example Request
 
-```
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{
     "recipient":	{
         "appCustomerId":"1231231"
@@ -112,7 +112,7 @@ https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN
 
 ##### Example Request
 
-```
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{
     "recipient":{
         "appCustomerId":"1231231"
@@ -231,7 +231,91 @@ It declares the recipient of the message. Request must include one of _id_, _app
   <img src="resources/buttontemplate.png">
 </p>
 
+The button template allows you to send a structured message that includes text and buttons.
+
 The button template sends a text message with up to three attached buttons. This template is useful for offering the message recipient options to choose from, such as pre-determined responses to a question, or actions to take.
+
+##### Request URI
+
+```
+https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
+
+##### Example Request
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+    "recipient": {
+     "appCustomerId": "1231231"
+    },
+    "message": {
+     "attachment": {
+       "type": "template",
+       "payload": {
+         "template_type": "button",
+         "text" : "How can I help you?",
+         "buttons" : [
+            {
+                "type" :"web_url",
+                "title" : "Send Me Receipt",
+                "payload" : "https://diyalog.im/sendreceipt"
+            },
+            {
+                "type" :"postback",
+                "title" : "New Transaction",
+                "payload" : "start_new_tx"
+            }
+        ],
+        "elements" : []
+       }
+     },
+     "quick_replies" : []
+    }
+    }' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+```
+
+
+##### Example Response
+
+```json
+{
+   "recipient_id": "2074022437",
+   "message_id": "-7523925115459309081"
+}
+```
+
+##### _recipient_
+
+It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
+ 
+|	  Property      |     Type     |Description                       |Required|
+| ----------------- | ------------ | -------------------------------- | ------ |
+| id   				|  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
+| appCustomerId     |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
+
+
+##### _message_
+
+|	  Property      |     Type                 |Description                     |Required|
+| ----------------- | ------------------------ | ------------------------------ | ------ |
+| attachment        |  Object                  | It contains payload od the button template content|yes|
+| quick_replies     |  Array<quick_reply>      | This property will not used in generic template. It should be set empty array. [] |yes|
+
+##### _message.attachment_
+
+|	  Property      |     Type     |Description                     |Required|
+| ----------------- | ------------ | ------------------------------ | ------ |
+| type              |  String      | Value must be **template**     |yes     |
+| payload           |  Object      | Payload of the generic template|yes     |
+
+##### _message.attachment.payload_
+ 
+|	  Property      |    Type                  |Description                     |Required|
+| ----------------- | ------------------------ | ------------------------------ | ------ |
+| template_type     | String                   | Value must be **button**      |yes     |
+| text              | String                   | Message text that will show on top of the template      |yes     |
+| buttons           | Array[[button](#button)] | You can add buttons to your buton template message by adding button property to buttons array | yes|
+| elements          | Array[[element](#messageattachmentpayloadelements)]           | This property will not used in generic template. It should be set empty array. [] | yes
 
 
 ### 2.3 Quick Reply Template Reference
@@ -239,6 +323,79 @@ The button template sends a text message with up to three attached buttons. This
 <p align="center">
   <img src="resources/quickreply.png">
 </p>
+
+Quick replies provide a way to present a set of up to 11 buttons in-conversation that contain a title and optional image, and appear prominently above the composer. 
+
+##### Request URI
+
+```
+https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
+
+##### Example Request
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+    "recipient": {
+     "appCustomerId": "1231232"
+    },
+    "message": {
+    "text" : "Do you want to continue?",
+     "quick_replies" : [
+        {
+            "content_type" : "text",
+            "title" : "Yes",
+            "payload" : "yes",
+            "image_url" : "https://diyalog.im/app/testmessage/testimages/quickreplytemplate-yes.png"
+        },
+        {
+            "content_type" : "text",
+            "title" : "No",
+            "payload" : "no",
+            "image_url" : "https://diyalog.im/app/testmessage/testimages/quickreplytemplate-no.png"
+        }
+     ]
+    }
+}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+```
+
+
+##### Example Response
+
+```json
+{
+   "recipient_id": "2074022437",
+   "message_id": "-7523925115459309081"
+}
+```
+
+##### _recipient_
+
+It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
+ 
+|	  Property      |     Type     |Description                       |Required|
+| ----------------- | ------------ | -------------------------------- | ------ |
+| id   				|  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
+| appCustomerId     |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
+
+
+##### _message_
+
+|	  Property      |     Type                 |Description                     |Required|
+| ----------------- | ------------------------ | ------------------------------ | ------ |
+| text              |  String                  | Message text that will show on top of the template|yes|
+| quick_replies     |  Array<quick_reply>      | Array of quick reply definitions. |yes|
+
+##### _quick_reply_
+
+|	  Property      |     Type     |Description                     |Required|
+| ----------------- | ------------ | ------------------------------ | ------ |
+| content_type      |  String      | Value must be **text**         |yes     |
+| title             |  String      | Quick reply button label       |yes     |
+| payload           |  String      | It is payload that will return to your application when pressed button       |yes     |
+| image_url         |  String      | If you want to add icon to your quick reply button, you can set icon url |Optinal    |
+
+
 
 
  <p align="center">
