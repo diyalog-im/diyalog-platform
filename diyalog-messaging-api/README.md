@@ -222,7 +222,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | webview_height_ratio |  String     | Value must be *FULL"|yes|
 
 
-
+> Made with :heart: by Ayya Co Ltd.
 
 
 
