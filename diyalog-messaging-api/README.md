@@ -1,6 +1,7 @@
-#Diyalog Messenger Platform
 
-##1. Sending Messages
+# Diyalog Messenger Platform
+
+## 1. Sending Messages
 
 Many types of content can be sent with Diyalog Messenger Platform including text, audio, images, video, files.
 
@@ -72,8 +73,7 @@ The following can be included in the attachment object:
 | attachment.type      |  String      | Type of attachment, may be image, audio, video, file or template|yes|
 | attachment.payload     |  Object      | Payload of the attaachment|yes|
 
-
-###1.2 Response
+### 1.2 Response
 
 A successful Send API request returns a JSON string containing identifiers for the message and its recipient.
 
@@ -90,9 +90,9 @@ A successful Send API request returns a JSON string containing identifiers for t
 | message_id     |  Object      | Unique id of the sent message in Diyalog Platform|
 
 
-##2.Template Reference
+## 2.Template Reference
 
-###2.1 Generic Template Reference
+### 2.1 Generic Template Reference
 
 ![](resources/genericTemplateSS.png)
 
