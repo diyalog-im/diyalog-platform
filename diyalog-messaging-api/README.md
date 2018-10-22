@@ -62,7 +62,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | message.tag        |  String      | Not Appicable - It is fb messenger default. It will be used later version of Diyalog Platform.|No|
 | message.text        |  String      | it is text message that will send to recipient. If you send text message you should set it, for other type of messages, you shoud set **attachment** property instead of **text**.|Optional|
 | message.attachment        |  Object      | it is used to define message content other than text messages. If you want to send message other than text you should set **attachment** property instead of **text**.|Optional|
-| message.quick_replies       |  Array[quick_reply]      | it is used to send user quick reply buttons to user. If there is no any button you should send empty array obejct ([]). |yes|
+| message.quick_replies       |  Array<[quick_reply](#quick_reply)>      | it is used to send user quick reply buttons to user. If there is no any button you should send empty array obejct ([]). |yes|
 
 ##### _attachment_
 
@@ -178,7 +178,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 |	  Property      |     Type                 |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | attachment        |  Object                  | It contains payload od the generic template content|yes|
-| quick_replies     |  Array<quick_reply>      | This property will not used in generic template. It should be set empty array. [] |yes|
+| quick_replies     |  Array<[quick_reply](#quick_reply)>      | This property will not used in generic template. It should be set empty array. [] |yes|
 
 ##### _message.attachment_
 
@@ -192,8 +192,8 @@ It declares the recipient of the message. Request must include one of _id_, _app
 |	  Property      |    Type                  |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | template_type     | String                   | Value must be **generic**      |yes     |
-| elements          | Array[[element](#messageattachmentpayloadelements)]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
-| buttons           | Array[[button](#button)] | This property will not used in generic template. It should be set empty array. [] | yes|
+| elements          | Array<[element](#messageattachmentpayloadelements)>           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
+| buttons           | Array<[button](#button)> | This property will not used in generic template. It should be set empty array. [] | yes|
 
 ##### _message.attachment.payload.elements_
  
@@ -203,7 +203,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | subtitle                             |  String                  | The subtitle to display in the template.|Optional|
 | image_url                            |  String                  | The URL of the image to display in the template.| Optional|
 | default_action                       |  Object ([default_action](#default_action))                  | The default action executed when the template is tapped.| Optional|
-| buttons                              |  Array[[button](#button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
+| buttons                              |  Array<[button](#button)>|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
 
 
 ##### _default\_action_
@@ -314,8 +314,8 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | template_type     | String                   | Value must be **button**      |yes     |
 | text              | String                   | Message text that will show on top of the template      |yes     |
-| buttons           | Array[[button](#button)] | You can add buttons to your buton template message by adding button property to buttons array | yes|
-| elements          | Array[[element](#messageattachmentpayloadelements)]           | This property will not used in generic template. It should be set empty array. [] | yes
+| buttons           | Array<[button](#button)> | You can add buttons to your buton template message by adding button property to buttons array | yes|
+| elements          | Array<[element](#messageattachmentpayloadelements)>           | This property will not used in generic template. It should be set empty array. [] | yes
 
 
 ### 2.3 Quick Reply Template Reference
@@ -384,7 +384,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 |	  Property      |     Type                 |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | text              |  String                  | Message text that will show on top of the template|yes|
-| quick_replies     |  Array<quick_reply>      | Array of quick reply definitions. |yes|
+| quick_replies     |  Array<[quick_reply](#quick_reply)>      | Array of quick reply definitions. |yes|
 
 ##### _quick_reply_
 
