@@ -156,7 +156,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 
 **Example Response**
 
-```
+```json
 {
    "recipient_id": "2074022437",
    "message_id": "-7523925115459309081"
