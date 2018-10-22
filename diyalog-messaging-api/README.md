@@ -219,9 +219,10 @@ It declares the recipient of the message. Request must include one of _id_, _app
 
 |	  Property         |     Type     |Description                     |Required|
 | ---------------------| ------------ | ------------------------------ | ------ |
-| type                 |  String      | Default action is only support url button. Value must be "web_url". |yes|
-| url                  |  String     | The url address that will open when tapped to content|yes|
-| webview_height_ratio |  String     | Value must be *FULL"|yes|
+| type                 |  String      | Type of the button. It can be **web_url** and **postback** |yes|
+| title                |  String      | Button title that will show in the button text.|yes|
+| payload_hidden       |  Boolean     | This flag is valid for postback type button. You may want to signed your postback data by client application secrets. If you set this flag is true, Diyalog client sdk will signed postback by calling your application extension that has signData method. |Optional|
+| payload              |  String      | Payload data that you want to turn back to your application. This will only return, if button type is postback. In web url you can set it to empty string.|yes|
 
 
 
