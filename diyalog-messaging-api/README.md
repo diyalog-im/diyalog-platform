@@ -225,6 +225,15 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | payload              |  String      | Payload data that you want to turn back to your application. This will only return, if button type is postback. In web url you can set it to empty string.|yes|
 
 
+### 2.2 Button Template Reference
+
+Not documented yet.
+
+
+### 2.3 Quick Reply Template Reference
+
+Not documented yet.
+
 
  <p align="center">
    Made with :heart: by Ayya Co Ltd.
