@@ -24,16 +24,18 @@ There are also some pre-defined messages templates available. You can send struc
 
 **Example Request**
 
-    curl -X POST -H "Content-Type: application/json" -d '{
-		"recipient":	{
- 				"appCustomerId":"1231231"
- 		},
- 		"message":{
- 			"text":"hello world",
- 			"quick_replies":[]
- 		}
- 	}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+```
+curl -X POST -H "Content-Type: application/json" -d '{
+    "recipient":	{
+        "appCustomerId":"1231231"
+    },
+    "message":{
+        "text":"hello world",
+        "quick_replies":[]
+    }
+}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
 
+```
 
 **Properties**
 
