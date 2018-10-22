@@ -227,7 +227,10 @@ It declares the recipient of the message. Request must include one of _id_, _app
 
 ### 2.2 Button Template Reference
 
-Not documented yet.
+<p align="center">
+  <img src="resources/buttontemplate.png">
+</p>
+
 
 
 ### 2.3 Quick Reply Template Reference
