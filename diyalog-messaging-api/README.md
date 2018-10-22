@@ -3,13 +3,11 @@
 
 ## 1. Sending Messages
 
-[button](button)
-
 Many types of content can be sent with Diyalog Messenger Platform including text, audio, images, video, files.
 
 There are also some pre-defined messages templates available. You can send structured messages for a good user experience. All these messaging templates are copied from Facebook Messenger in order to compatibility with fb messenger. Therefore, you can directly integrate your as is facebook bot application to Diyalog Messenger platform.
 
-**Supported Templates**
+##### Supported Templates
 
 * Generic Template
 * Button Template
@@ -18,14 +16,13 @@ There are also some pre-defined messages templates available. You can send struc
 
 ### 1.1 Send API Reference
 
-**Request URI**
+##### Request URI
  
 ```
 https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
 ```
 
-
-**Example Request**
+##### Example Request
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{
@@ -40,14 +37,14 @@ curl -X POST -H "Content-Type: application/json" -d '{
 
 ```
 
-**Properties**
+##### Properties
 
 |	  Property   |     Type     |Description       |Required|
 | -------------- | ------------ | ---------------- | ------ |
 | recipient      |  Object      | recipient object |yes     |
 | message        |  Object      | message objecy   |yes     |
 
-**_recipient_**
+##### _recipient_
 
 It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
  
@@ -57,7 +54,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | receipient.appCustomerId |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
 
 
-**_message_**
+##### _message_
 
 |	  Property      |     Type     |Description                     |Required|
 | ----------------- | ------------ | ------------------------------ | ------ |
@@ -67,7 +64,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | message.attachment        |  Object      | it is used to define message content other than text messages. If you want to send message other than text you should set **attachment** property instead of **text**.|Optional|
 | message.quick_replies       |  Array[quick_reply]      | it is used to send user quick reply buttons to user. If there is no any button you should send empty array obejct ([]). |yes|
 
-**_attachment_**
+##### _attachment_
 
 The following can be included in the attachment object: 
 * 	Rich media messages including images, audios, videos, or files.
@@ -89,7 +86,7 @@ A successful Send API request returns a JSON string containing identifiers for t
 }
 ```
 		
-**_Properties_**
+##### _Properties_
 
 |	  Property      |     Type     |Description                     |
 | ----------------- | ------------ | ------------------------------ |
@@ -105,13 +102,13 @@ A successful Send API request returns a JSON string containing identifiers for t
 
 The generic template allows you to send a structured message that includes an image, text and buttons. A generic template with multiple templates described in the elements array will send a horizontally scrollable carousel of items, each composed of an image, text and buttons. For complete implementation details, see Generic Template.
 
-**Request URI**
+##### Request URI
 
 ```
 https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
 ```
 
-**Example Request**
+##### Example Request
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{
@@ -156,7 +153,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 ```
 
 
-**Example Response**
+##### Example Response
 
 ```json
 {
@@ -165,7 +162,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }
 ```
 
-**_recipient_**
+##### _recipient_
 
 It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
  
@@ -174,21 +171,21 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | id   					 |  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
 | appCustomerId        |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
 
-**_message_**
+##### _message_
 
 |	  Property      |     Type                 |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | attachment        |  Object                  | It contains payload od the generic template content|yes|
 | quick_replies     |  Array<quick_reply>      | This property will not used in generic template. It should be set empty array. [] |yes|
 
-**_message.attachment_**
+##### _message.attachment_
 
 |	  Property      |     Type     |Description                     |Required|
 | ----------------- | ------------ | ------------------------------ | ------ |
 | type              |  String      | Value must be **template**     |yes     |
 | payload           |  Object      | Payload of the generic template|yes     |
 
-**_message.attachment.payload_**
+##### _message.attachment.payload_
  
 |	  Property      |    Type       |Description                     |Required|
 | ----------------- | ------------- | ------------------------------ | ------ |
@@ -196,7 +193,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | elements          | Array[element]| An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
 | buttons           | Array[button] | This property will not used in generic template. It should be set empty array. [] | yes|
 
-**_message.attachment.payload.elements_**
+##### _message.attachment.payload.elements_
  
 |	  Property      |     Type      |Description                              |Required|
 | ------------------| ------------- | --------------------------------------- | ------ |
@@ -207,7 +204,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | buttons           |  Array[[button](button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
 
 
-**_default\_action_**
+##### _default\_action_
 
 |	  Property        |     Type     |Description                                           |Required|
 | ------------------- | ------------ | ---------------------------------------------------- | ------ |
@@ -216,7 +213,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | webview_height_ratio|  String      | Value must be *FULL"                                 |yes     |
 
 
-#####[**_button_**](button)
+##### _button_
 
 |	  Property         |     Type     |Description                     |Required|
 | ---------------------| ------------ | ------------------------------ | ------ |
