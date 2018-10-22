@@ -3,6 +3,8 @@
 
 ## 1. Sending Messages
 
+[button](button)
+
 Many types of content can be sent with Diyalog Messenger Platform including text, audio, images, video, files.
 
 There are also some pre-defined messages templates available. You can send structured messages for a good user experience. All these messaging templates are copied from Facebook Messenger in order to compatibility with fb messenger. Therefore, you can directly integrate your as is facebook bot application to Diyalog Messenger platform.
@@ -202,7 +204,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | subtitle          |  String       | The subtitle to display in the template.|Optional|
 | image_url         |  String       | The URL of the image to display in the template.| Optional|
 | default_action    |  Object       | The default action executed when the template is tapped.| Optional|
-| buttons           |  Array[[button](button_definition)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
+| buttons           |  Array[[button](button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
 
 
 **_default\_action_**
@@ -214,7 +216,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | webview_height_ratio|  String      | Value must be *FULL"                                 |yes     |
 
 
-[**_button_**](button_definition)
+#####[**_button_**](button)
 
 |	  Property         |     Type     |Description                     |Required|
 | ---------------------| ------------ | ------------------------------ | ------ |
