@@ -192,7 +192,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 |	  Property      |    Type                  |Description                     |Required|
 | ----------------- | ------------------------ | ------------------------------ | ------ |
 | template_type     | String                   | Value must be **generic**      |yes     |
-| elements          | Array[[element](#message.attachment.payload.elements)]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
+| elements          | Array[[element](#messageattachmentpayloadelements)]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
 | buttons           | Array[[button](#button)] | This property will not used in generic template. It should be set empty array. [] | yes|
 
 ##### _message.attachment.payload.elements_
