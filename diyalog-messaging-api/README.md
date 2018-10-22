@@ -3,11 +3,9 @@
 
 ## 1. Sending Messages
 
-[button](#button)]
-
 Many types of content can be sent with Diyalog Messenger Platform including text, audio, images, video, files.
 
-There are also some pre-defined messages templates available. You can send structured messages for a good user experience. All these messaging templates are copied from Facebook Messenger in order to compatibility with fb messenger. Therefore, you can directly integrate your as is facebook bot application to Diyalog Messenger platform.
+There are also some pre-defined messages templates available. You can send structured messages for a good user experience. All these messaging templates are copied from Facebook Messenger :smiley: in order to compatibility with fb messenger. Therefore, you can directly integrate your as is facebook bot application to Diyalog Messenger platform.
 
 ##### Supported Templates
 
@@ -170,8 +168,8 @@ It declares the recipient of the message. Request must include one of _id_, _app
  
 |	  Property      |     Type     |Description                       |Required|
 | ----------------- | ------------ | -------------------------------- | ------ |
-| id   					 |  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
-| appCustomerId        |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
+| id   				|  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
+| appCustomerId     |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
 
 ##### _message_
 
@@ -189,21 +187,21 @@ It declares the recipient of the message. Request must include one of _id_, _app
 
 ##### _message.attachment.payload_
  
-|	  Property      |    Type       |Description                     |Required|
-| ----------------- | ------------- | ------------------------------ | ------ |
-| template_type     | String        | Value must be **generic**      |yes     |
-| elements          | Array[element]| An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
-| buttons           | Array[button] | This property will not used in generic template. It should be set empty array. [] | yes|
+|	  Property      |    Type                  |Description                     |Required|
+| ----------------- | ------------------------ | ------------------------------ | ------ |
+| template_type     | String                   | Value must be **generic**      |yes     |
+| elements          | Array[element]           | An array of element objects that describe instances of the generic template to be sent. Specifying multiple elements will send a horizontally scrollable carousel of templates. A maximum of 10 elements is supported.|yes|
+| buttons           | Array[[button](#button)] | This property will not used in generic template. It should be set empty array. [] | yes|
 
 ##### _message.attachment.payload.elements_
  
-|	  Property      |     Type      |Description                              |Required|
-| ------------------| ------------- | --------------------------------------- | ------ |
-| title             |  String       | The title to display in the template.   |Optional|
-| subtitle          |  String       | The subtitle to display in the template.|Optional|
-| image_url         |  String       | The URL of the image to display in the template.| Optional|
-| default_action    |  Object       | The default action executed when the template is tapped.| Optional|
-| buttons           |  Array[[button](#button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
+|	  Property                         |     Type                 |Description                              |Required|
+| -------------------------------------| ------------------------ | --------------------------------------- | ------ |
+| title                                |  String                  | The title to display in the template.   |Optional|
+| subtitle                             |  String                  | The subtitle to display in the template.|Optional|
+| image_url                            |  String                  | The URL of the image to display in the template.| Optional|
+| [default_action](#default_action)    |  Object                  | The default action executed when the template is tapped.| Optional|
+| buttons                              |  Array[[button](#button)]|  An array of buttons to append to the template. A maximum of 3 buttons per element is supported. If you don't add any button you should set empty array []. | yes|
 
 
 ##### _default\_action_
