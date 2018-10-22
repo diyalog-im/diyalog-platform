@@ -17,9 +17,10 @@ There are also some pre-defined messages templates available. You can send struc
 ### 1.1 Send API Reference
 
 **Request URI**
-
  
-	https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
+https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
 
 
 **Example Request**
@@ -79,10 +80,12 @@ The following can be included in the attachment object:
 
 A successful Send API request returns a JSON string containing identifiers for the message and its recipient.
 
-    {
-       "recipient_id": "2074022437",
-       "message_id": "-7523925115459309081"
-    }
+```
+{
+   "recipient_id": "2074022437",
+   "message_id": "-7523925115459309081"
+}
+```
 		
 **_Properties_**
 
@@ -102,57 +105,63 @@ The generic template allows you to send a structured message that includes an im
 
 **Request URI**
 
-    https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
+https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
+```
 
 **Example Request**
 
-	curl -X POST -H "Content-Type: application/json" -d '{
-		"recipient":{
-			"appCustomerId":"1231231"
-		},
-		"message":{
-			"attachment":{
-				"type":"template",
-				"payload":{
-					"template_type":"generic",
-					"elements":[
-						{
-						    "title":"Your Holiday Offer",
-							"image_url":"https://diyalog.im/app/testmessage/testimages/generictemplate-6.jpg",
-							"subtitle":"We have a special holiday offer for you. This holiday is for you.",
-							"default_action":{
-								"type":"web_url",
-								"url":"https://defaulaction.com",
-								"webview_height_ratio":"FULL"
-							},
-							"buttons":[
-								{
-									"type":"web_url",
-									"title":"I am interested",
-									"payload":"https://isbank.com.tr"
-								},
-								{
-									"type":"postback",
-									"title":"Cancel",
-									"payload":"cancelled1"
-								}
-							]
-						}
-					],
-					"buttons":[]
-				}
-			},
-			"quick_replies":[]
-		}
-	}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+```
+curl -X POST -H "Content-Type: application/json" -d '{
+    "recipient":{
+        "appCustomerId":"1231231"
+    },
+    "message":{
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"generic",
+                "elements":[
+                    {
+                        "title":"Your Holiday Offer",
+                        "image_url":"https://diyalog.im/app/testmessage/testimages/generictemplate-6.jpg",
+                        "subtitle":"We have a special holiday offer for you. This holiday is for you.",
+                        "default_action":{
+                            "type":"web_url",
+                            "url":"https://defaulaction.com",
+                            "webview_height_ratio":"FULL"
+                        },
+                        "buttons":[
+                            {
+                                "type":"web_url",
+                                "title":"I am interested",
+                                "payload":"https://isbank.com.tr"
+                            },
+                            {
+                                "type":"postback",
+                                "title":"Cancel",
+                                "payload":"cancelled1"
+                            }
+                        ]
+                    }
+                ],
+                "buttons":[]
+            }
+        },
+        "quick_replies":[]
+    }
+}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+```
 
 
 **Example Response**
 
-    {
-       "recipient_id": "2074022437",
-       "message_id": "-7523925115459309081"
-    }
+```
+{
+   "recipient_id": "2074022437",
+   "message_id": "-7523925115459309081"
+}
+```
 
 **_recipient_**
 
