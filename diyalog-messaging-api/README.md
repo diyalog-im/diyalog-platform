@@ -1,5 +1,5 @@
 
-# Diyalog Messenger Platform Messagin API Reference
+# Diyalog Messenger Platform Messaging API Reference
 
 ## 1. Sending Messages
 
@@ -397,6 +397,8 @@ It declares the recipient of the message. Request must include one of _id_, _app
 
 
 
+
+##
 
  <p align="center">
    Made with :heart: by Ayya Co Ltd.
