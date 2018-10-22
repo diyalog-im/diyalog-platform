@@ -393,7 +393,7 @@ It declares the recipient of the message. Request must include one of _id_, _app
 | content_type      |  String      | Value must be **text**         |yes     |
 | title             |  String      | Quick reply button label       |yes     |
 | payload           |  String      | It is payload that will return to your application when pressed button       |yes     |
-| image_url         |  String      | If you want to add icon to your quick reply button, you can set icon url |Optinal    |
+| image_url         |  String      | If you want to add icon to your quick reply button, you can set icon url |Optional    |
 
 
 
