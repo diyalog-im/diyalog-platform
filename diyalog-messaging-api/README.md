@@ -15,39 +15,41 @@ There are also some pre-defined messages templates available. You can send struc
 
 ### 1.1 Send API Reference
 
->	**Request URI**
+**Request URI**
 
-> 
->		https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
->
+ 
+	https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>
 
->	**Example Request**
 
-> 		curl -X POST -H "Content-Type: application/json" -d '{
-> 			"recipient":	{
-> 				"appCustomerId":"1231231"
-> 			},
-> 			"message":{
-> 				"text":"hello world",
-> 				"quick_replies":[]
-> 			}
-> 		}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
+**Example Request**
 
->	**Properties**
->
->	  Property      |     Type     |Description                     |Required|
-|:---------------|:-------------|:---------------------------------|:---|
-| recipient      |  Object      | recipient object                 |yes|
-| message        |  Object      | message objecy                   |yes|
+    curl -X POST -H "Content-Type: application/json" -d '{
+		"recipient":	{
+ 				"appCustomerId":"1231231"
+ 		},
+ 		"message":{
+ 			"text":"hello world",
+ 			"quick_replies":[]
+ 		}
+ 	}' "https://<DIYALOG-SERVER-API-ENDPOINT>/v1/bots/sendmessage/<YOUR-BOT-ACCESS-TOKEN>"
 
-> **_recipient_**
 
-> It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
-> 
->	  Property      |     Type     |Description                       |Required|
-|:---------------|:-------------|:---------------------------------|:--|
-| recipient.id   					 |  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional|
-| receipient.appCustomerId        |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
+**Properties**
+
+|	  Property   |     Type     |Description       |Required|
+|--------------- |------------- |------------------|--------|
+| recipient      |  Object      | recipient object |yes     |
+| message        |  Object      | message objecy   |yes     |
+
+**_recipient_**
+
+It declares the recipient of the message. Request must include one of _id_, _appCustomerId_
+ 
+|	  Property   |     Type     |Description                       |Required|
+|---------------|-------------|---------------------------------|--|
+| recipient.id  |  String      | It is id of user in Diyalog platform. If you know it, you can directly use Diyalog user id. | Optional |
+| receipient.appCustomerId |  String      | You can use direct customer id of your system. But Diyalog seesion should be created with this customer id. If you are using Token base authentication of DiyalogSDK in your client application, system will create user and save the customer id.| Optional
+
 
 > **_message_**
 
