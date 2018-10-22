@@ -3,6 +3,8 @@
 
 ## 1. Sending Messages
 
+[button](#button)]
+
 Many types of content can be sent with Diyalog Messenger Platform including text, audio, images, video, files.
 
 There are also some pre-defined messages templates available. You can send structured messages for a good user experience. All these messaging templates are copied from Facebook Messenger in order to compatibility with fb messenger. Therefore, you can directly integrate your as is facebook bot application to Diyalog Messenger platform.
