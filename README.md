@@ -1,8 +1,8 @@
 
 ![](logo_blue_256.jpg)
-# Diyalog Messaging Platform 1.0.4
+# Diyalog Messaging Platform 1.1.1
 
-## Introduction
+## Overview
 
 Diyalog is a platform which provides mutual, continuous and secure communication to companies with their customers.
 
@@ -81,6 +81,9 @@ Diyalog clients are :
 3. [Android SDK](diyalog-android-sdk/README.MD)
 4. [Ionic / Cordova Plugin](diyalog-cordova-plugin/README.md)
 
+## Integration
+
+Diyalog support phone and email or both authorisation by default. SDK give you a UI for this type of authorisation. Only needing is 
 
 ## DevOps Documentation
 Welcome to devops documentatation. You can find how you can install Diyalog Platform server from Diyalog docker images.
