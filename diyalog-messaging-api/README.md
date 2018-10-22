@@ -231,11 +231,14 @@ It declares the recipient of the message. Request must include one of _id_, _app
   <img src="resources/buttontemplate.png">
 </p>
 
+The button template sends a text message with up to three attached buttons. This template is useful for offering the message recipient options to choose from, such as pre-determined responses to a question, or actions to take.
 
 
 ### 2.3 Quick Reply Template Reference
 
-Not documented yet.
+<p align="center">
+  <img src="resources/quickreply.png">
+</p>
 
 
  <p align="center">
