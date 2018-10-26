@@ -147,7 +147,7 @@ DiyalogEngine.diyalogInstance().presentMessengerInNewWindow()
 }
 ```
 
-###Richiew Notificaion Support
+### Richiew Notificaion Support
 
 How to add Richview Notification support to your app
 
