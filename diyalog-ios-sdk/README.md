@@ -147,5 +147,126 @@ DiyalogEngine.diyalogInstance().presentMessengerInNewWindow()
 }
 ```
 
+**Richiew Notificaion Support**
+
+How to add Richview Notification support to your app
+
+Here is the steps for it.
+
+- Go to project expolrer. 
+
+![](Screenshots/0.png)
+- Add target -> Select "Notification Content Extension".  
+
+![](Screenshots/1.png)
+
+- Give it proper name and press "finish".
+
+![](Screenshots/2.png)
+
+- It will ask for activate to scheme so activate it.
+
+![](Screenshots/3.png)
+
+- Add target -> Select "Notification Service Extension".
+
+![](Screenshots/4.png)
+
+- Give it proper name and press "finish".
+
+![](Screenshots/5.png)
+
+- It will ask for activate to scheme so activate it.
+
+![](Screenshots/6.png)
+
+
+Add DiyalogEngine Framework in both Extension
+
+For that go to project explorar 
+- Select NotificationContentExtension target
+- Go "Linked Frameworks and Libraries"
+- Click Add(+) and choose DiyalogEngine.Framework 
+
+![](Screenshots/7.png)
+
+- Same Way add for NotificationServiceExtension 
+
+![](Screenshots/8.png)
+
+
+**Select NotificationServiceExtension**
+
+Go to NotificationService.swift and import DiyalogEngine
+
+
+Replace this method  
+```sh
+override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+}
+```
+With this method
+```sh
+ override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+        self.contentHandler = contentHandler
+        bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+        
+        if let bestAttemptContent = bestAttemptContent {
+            // Modify the notification content here...
+            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+    
+            // Call method to download notification content
+            DiyalogEngine.diyalogInstance().didRecieveNotification(bestAttemptContent, withContentHandler: { (attemptContent) in
+                    contentHandler(bestAttemptContent)
+            })
+
+        }
+    }
+    
+ ```
+
+ 
+ 
+**Select NotificationContentExtension**
+
+Go to NotificationViewController.swift  And
+```sh
+import DiyalogEngine
+
+import AVFoundation 
+```
+
+Remove
+```@IBOutlet var label: UILabel?  ```
+
+
+Replace this method  
+```sh
+func didReceive(_ notification: UNNotification) {
+}
+```
+With this method
+```sh
+  func didReceive(_ notification: UNNotification) {
+        
+        // Call method to load image view or player view
+        if #available(iOS 10.0, *) {
+            DiyalogEngine.diyalogInstance().didReceive(notification: notification, superView: self.view) { (uiView, avPlayer, avAudioPlayer)  in
+                if avPlayer != nil {
+                    DispatchQueue.main.async {
+                        avPlayer?.play()
+                    }
+                } else if avAudioPlayer != nil {
+                    DispatchQueue.main.async {
+                        avAudioPlayer?.play()
+                    }
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+ ```
+
 
 
