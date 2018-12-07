@@ -174,60 +174,123 @@ btnStartChat.setOnClickListener(new View.OnClickListener() {
 
 # Integrate Firebase Messaging Push notification with Diyalog SDK
 
-In Diyalog SDK we have used firebase messaging platform for sending push notification. We have used firebase services in sdk. If in main application has also firebase push notification then client need to follow below steps to configure FCM push notification.
+In Diyalog SDK we have used firebase messaging platform for sending push notification. so we have used firebase services in sdk. Client need to configure as below into main application.
+
+## Configuration Steps on firebase console
+
+### To create a Firebase project
+
+**Step 1:** Create a Firebase project in the [Firebase console](https://console.firebase.google.com/), if you don't have any project then Click **Add project**. If you already have an existing Google project associated with your mobile app, select it from the **Project name** drop down menu. Otherwise, enter a project name to create a new project 
+
+**Step 2:** Follow the remaining steps and click **Create project** (or **Add Firebase** if you have existing project) for your project. When the process completes, you'll be taken to the project overview.
+
+### Now that you have a project, you can add your Android app to it
+
+**Step 1:** Click **Add Firebase to your Android app** and follow the setup steps. If you're importing an existing Google project, this may happen automatically and you can just download the config file.
+
+**Step 2:** When prompted, enter your app's package name. It's important to enter the package name your app is using; this can only be set when you add an app to your Firebase project.
+
+**Step 3:** During the process, you'll download a **google-services.json** file. You can download this file again at any time.
+
+**Step 4:** After you add the initialization code, run your app to send verification to the Firebase console that you've successfully installed Firebase.
 
 
-### Configuration Steps
-**Step 1:** Open module level build.grdle file. <br />
+## Configuration Steps for android project 
 
-**a. Add below dependency**
+### You need to perform a few basic steps to prepare your Android Studio project. 
+
+**Step 1:** Add **google-services.json** file to application level project. (usually the app/google-services.json)
+**Step 2:** Add rules to your root-level build.gradle file, to include the google-services plugin and the Google's Maven repository.
 
 ```sh
-     implementation 'com.google.firebase:firebase-messaging:12.0.1' <br />
-     implementation 'com.google.firebase:firebase-core:12.0.1' <br />
-```
-
-
-
-**Step 2:** Client need to extend firebase register class with **DiyalogFirebaseInstanceIDService** in stead of FirebaseInstanceIdService. It will Override **onTokenRefresh** method with device token parameter. client can find device token here, and he can use into main application when require.<br />
-
-```sh
-public class MyFirebaseInstanceIDService extends DiyalogFirebaseInstanceIDService {
-    private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
-
-
-    @Override
-    protected void onTokenRefresh(String token) {
-        Log.d(TAG, "Token loaded: " + token);
-
+buildscript {
+    // ...
+    dependencies {
+        // ...
+        classpath 'com.google.gms:google-services:4.1.0' // google-services plugin
     }
+}
 
-
+allprojects {
+    // ...
+    repositories {
+        // ...
+        google() // Google's Maven repository
+    }
 }
 ```
 
-**Step 3:** Client need to extend firebase push receiver class with **DiyalogFirebaseMessagingService** in stead of FirebaseMessagingService. you need to Override **onMessageReceived** method with RemoteMessage(Push payload) data. Client need to check remote message data for application or sdk.<br />
+**Step 3:** Then, in your module Gradle file (usually the app/build.gradle), add the apply plugin line at the bottom of the file to enable the Gradle plugin. You should also add the dependencies for the Firebase SDKs.
 
 ```sh
-public class MyFirebaseMessagingService extends DiyalogFirebaseMessagingService {
+apply plugin: 'com.android.application'
+
+android {
+  // ...
+}
+
+dependencies {
+  // ...
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+     
+}
+
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'
+```
+
+**Step 4:** Now, client require to Pass sender ID/project ID to sdk from main application as below. client need to pass this pushID before Initialize() sdk. Client can register pushID into application class.
+
+```sh
+ DiyalogEngine.diyalogInstance().setPushId(214910017039L);
+```
+
+Done. Above steps are enough for generating push notification, if main application has no any FCM integration.
+
+
+## Main application has firebase push notification
+If in main application has also firebase push notification then client need to follow additinal below steps to configure FCM push notification.
+
+
+### Configuration Steps
+
+**Step 1:** Client need send device token to diyalog sdk from main application's FirebaseInstanceIdService class.<br />
+
+```sh
+ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+    private static final String TAG = DiyalogFirebaseInstanceIDService.class.getSimpleName();
+
+    @Override
+    public void onTokenRefresh() {
+        super.onTokenRefresh();
+
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "Token loaded Application:" + refreshedToken);
+
+        DiyalogEngine.diyalogInstance().storeDeviceToken(getApplicationContext(),refreshedToken);
+    }
+}
+```
+
+**Step 3:** Client need to pass push payload data(RemoteMessage) to diyalog sdk from application's  FirebaseMessagingService.<br />
+
+```sh
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) { 
 
-        String seq_ID = remoteMessage.getData().get("seq");
-        if(seq_ID!=null) {
-            // push received for diyalog sdk
-            processPushMessage(remoteMessage); 	    //show notification of Diyalog sdk
-        }else{
-            // push received for Main application, client can add their logic here to show main application push notification
-        }
+            //show notification of Diyalog sdk
+            DiyalogMessageService firebaseservice = new DiyalogMessageService(getApplication());
+            firebaseservice.processPushMessage(remoteMessage);	    
+        
     }
 }
 
 ```
 		
-
 
 **Step 4:** Open your project AndroidManifest.xml file and register firebase service as below line of code inside <application> tag.
 
@@ -248,5 +311,6 @@ public class MyFirebaseMessagingService extends DiyalogFirebaseMessagingService 
 
 ```
 
- 
+Done.  :)
+
 
