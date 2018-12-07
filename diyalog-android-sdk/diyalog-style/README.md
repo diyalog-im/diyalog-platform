@@ -72,6 +72,7 @@ First create object of DiyalogStyle class from your application class, and using
 
    * style.setGradientToolbar(R.drawable.gradient_bg);
      * Client need to create gradient drawable file into main application, and need to pass this file refrence as a configurable parameter. 
+     
         ![](StyleDocumentImages/toolbar/gradient_bg.png)  
  
 
@@ -79,14 +80,17 @@ First create object of DiyalogStyle class from your application class, and using
 
    * style.setMainColor(Color.parseColor("#139dea"));
      * By default Main color of application theme will set as a toolbar & statusbar color 
+     
         ![](StyleDocumentImages/toolbar/main_color.png)  
  
    * style.setStatusBarColor(Color.parseColor("#e00b52"));
      * This will change only statusbar color of sdk. 
+     
         ![](StyleDocumentImages/toolbar/statusbar_color.png)  
  
    * style.setToolBarColor(R.color.picker_main_color);
      * This will change only toolbar color of sdk. 
+     
          ![](StyleDocumentImages/toolbar/Toolbar_color.png)  
  
    * **Note:** If you will set gradient background configuration then above configuration will not be apply effact. 
@@ -100,7 +104,8 @@ First create object of DiyalogStyle class from your application class, and using
      * style.setSettingsIconColor(Color.parseColor("#e00b52")); 
    * To set setting screen title color
      * style.setSettingsTitleColor(Color.parseColor("#5622b7"));  <br />
-        ![](StyleDocumentImages/Setting/setting.png)
+     
+     ![](StyleDocumentImages/Setting/setting.png)
 
 **4. Dividers**
 
