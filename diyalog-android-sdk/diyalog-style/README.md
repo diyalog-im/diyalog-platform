@@ -53,8 +53,45 @@ First create object of DiyalogStyle class from your application class, and using
      * style.setAvatarBackgroundResource(R.drawable.bg_1);
      * **Note:** If you set both color and image resource for user placeholder then SDK will accept avatar image resource as a place holder
 
+**2. Customise toolbar**
+
+Diyalog SDK provides custom Toolbar style to your application, using this customise you can set toolbar and statusbar same as your main application.
+
+##### How to use custom toolbar?
+First create object of DiyalogStyle class from your application class, and using that object you can customise toolbar.
+
+
+##### Sample code:
+```sh
+ DiyalogStyle style = DiyalogEngine.diyalogInstance().style;
+```
+
+**Following are cases in which Client can customise toolbar in sdk:** 
+
+**- Set gradient background for toolbar and statusbar**
+
+   * style.setGradientToolbar(R.drawable.gradient_bg);
+     * Client need to create gradient drawable file into main application, and need to pass this file refrence as a configurable parameter. 
+        ![](StyleDocumentImages/toolbar/gradient_bg.png)  
+ 
+
+**- Set background color for toolbar and statusbar**
+
+   * style.setMainColor(Color.parseColor("#139dea"));
+     * By default Main color of application theme will set as a toolbar & statusbar color 
+        ![](StyleDocumentImages/toolbar/main_color.png)  
+ 
+   * style.setStatusBarColor(Color.parseColor("#e00b52"));
+     * This will change only statusbar color of sdk. 
+        ![](StyleDocumentImages/toolbar/statusbar_color.png)  
+ 
+   * style.setToolBarColor(R.color.picker_main_color);
+     * This will change only toolbar color of sdk. 
+         ![](StyleDocumentImages/toolbar/Toolbar_color.png)  
+ 
+   * **Note:** If you will set gradient background configuration then above configuration will not be apply effact. 
 	
-**2. Setting**
+**3. Setting**
 
    * To set setting screen label and text color
      * style.setSettingsCategoryTextColor(Color.parseColor("#f28e02"));
@@ -65,14 +102,14 @@ First create object of DiyalogStyle class from your application class, and using
      * style.setSettingsTitleColor(Color.parseColor("#5622b7"));  <br />
         ![](StyleDocumentImages/Setting/setting.png)
 
-**3. Dividers**
+**4. Dividers**
 
    * To set divider color to list in application 
      * style.setDividerColor(Color.parseColor("#e00b52"));
      * This divider color will apply to whole application as divider color. <br />
         ![](StyleDocumentImages/General/list_divider.jpg)
 
-**4. Text color**
+**5. Text color**
 
    * Set primary text color
      * style.setTextPrimaryColor(Color.parseColor("#e00b52"));
@@ -88,7 +125,7 @@ First create object of DiyalogStyle class from your application class, and using
      * In above image see text color of label "Long press for additional options"
 
 
-**5. Contact screen(contact tab of main screen)**
+**6. Contact screen(contact tab of main screen)**
 
    * set share icon and text color 
      * style.setActionShareColor(Color.parseColor("#0a0ed8"));
@@ -104,7 +141,7 @@ First create object of DiyalogStyle class from your application class, and using
      * if customer has not set contact divider color then it will accept default divider color which user has set in “setDividerColor” method<br />
         ![](StyleDocumentImages/contact/contact.png)
 
-**6. Chat screen (Chat tab from home screen)**
+**7. Chat screen (Chat tab from home screen)**
 
 
    * Set indicator color of sent message
@@ -140,7 +177,7 @@ First create object of DiyalogStyle class from your application class, and using
 
         
 
-**7. Friends Profile/ Group profile**
+**8. Friends Profile/ Group profile**
 
    * Set title color of friendName and groupName text color
      * style.setProfileTitleColor(Color.parseColor("#139dea"));
@@ -158,7 +195,7 @@ First create object of DiyalogStyle class from your application class, and using
         ![](StyleDocumentImages/Profile/Profile.png)
 
 
-**8. Group profile**
+**9. Group profile**
 
    * Set admin label text color 
      * If not pass then set default Accent color
@@ -167,7 +204,7 @@ First create object of DiyalogStyle class from your application class, and using
      *  style.setGroupOnlineColor(Color.parseColor("#380249")); <br />
         ![](StyleDocumentImages/Group/groupProfile.png)
 
-**9. Conversation(Chat Detail)**
+**10. Conversation(Chat Detail)**
 
    * set enable send message icon color
      * style.setConvSendEnabledColor(Color.parseColor("#0cd341")); 
